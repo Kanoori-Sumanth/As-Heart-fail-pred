@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+  <h2 align="center" style="font-family:Times New Roman"> Estimate the Heart failure possibility of a patient.</h2>
+{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('predict') }}">
+<!-- First row -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="anaemia"><b>Anaemia</b></label>
+      <select name="anaemia" class="form-control">
+      	<option value="0">NO</option>
+    	<option value="1">YES</option>
+  	  </select>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="age"><b>Age</b></label>
+      <input type="text" name="age" class="form-control" required="required">
+    </div>
+  </div>
+
+ <!-- Second row -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="creatinine_phosphokinase"><b>Creatinine Phosphokinase</b></label>
+      <input type="text" name="creatinine_phosphokinase" class="form-control" required="required">
+    </div>
+
+    <div class="form-group col-md-6">
+    	<label for="diabetes"><b>Diabetes</b></label>
+    	<select name="diabetes" class="form-control">
+    		<option value="0">NO</option>
+    		<option value="1">YES</option>
+    	</select>
+    </div>
+  </div>
+
+  <!-- Third row -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="ejection_fraction"><b>Ejection fraction</b></label>
+      <input type="text" name="ejection_fraction" class="form-control" required="required">
+    </div>
+
+    <div class="form-group col-md-6">
+    	<label for="high_blood_pressure"><b>High blood pressure</b></label>
+    	<select name="high_blood_pressure" class="form-control">
+    		<option value="0">NO</option>
+    		<option value="1">YES</option>
+    	</select>
+    </div>
+  </div>
+
+  <!-- Fourth row -->
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="platelets"><b>platelets</b></label>
+      <input type="text" name="platelets" class="form-control" required="required">
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="serum_creatinine"><b>serum_creatinine</b></label>
+      <input type="text" name="serum_creatinine" class="form-control" required="required">
+    </div>
+  </div>
+
+  <!-- Fifth row -->
+  <div class="form-row">
+    <div class="form-group col-md-4">
+    	<label for="serum_sodium"><b>serum_sodium</b></label>
+    	<input type="text" name="serum_sodium" class="form-control" required="required">
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="sex"><b>Gender</b></label>
+
+      <select name="sex" class="form-control">
+      	<option value="0">Female</option>
+    	  <option value="1">Male</option>
+  	  </select>    	
+    </div>
+
+    <div class="form-group col-md-4">
+      <label for="smoking"><b>smoking</b></label>
+
+      <select name="smoking" class="form-control">
+      	<option value="0">NO</option>
+    	  <option value="1">YES</option>
+  	  </select>    	
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary"><b>Predict</b></button>
+</form>
+{% endblock %}
+
+<!-- Result -->
+  {% block result %}
+    {% if proba %}
+      <div class="container p-3">
+        <h2> Predicted Label: {{ label }}</h2>
+        <h2> There is a {{ proba }}% chance of Heart failure.</h2>
+      </div>
+    {% endif %}
+  {% endblock %}
