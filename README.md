@@ -1,2 +1,3 @@
 # heart-failure-prediction
-https://heart-fail-prediction.herokuapp.com/
+As heroku: https://heart-fail-prediction.herokuapp.com/
+My heroku: https://heart-fail-as-proj.herokuapp.com/
